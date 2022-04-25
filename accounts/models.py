@@ -46,20 +46,20 @@ class UserManager(BaseUserManager):
         return user
 
 class Account(AbstractBaseUser):
-    picrure = models.FileField(verbose_name='picture', upload_to='user picture/', default='user picture/prof.png')
-    first_name = models.CharField(max_length=60, verbose_name='First name')
-    last_name = models.CharField(max_length=60, verbose_name='Last name')
+    picrure = models.FileField(verbose_name='picture', upload_to='user picture/', default='user picture/prof.png', blank=True)
+    first_name = models.CharField(max_length=60, verbose_name='First name', blank=True)
+    last_name = models.CharField(max_length=60, verbose_name='Last name', blank=True)
     # email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    username = None
     # username=None
-    phone_number = models.BigIntegerField(default=0, verbose_name='Phone Number')
-    State = models.CharField(max_length=100, verbose_name='State', blank=True)
-    city = models.CharField(max_length=100, verbose_name='City', blank=True)
+    phone_number = models.BigIntegerField(default=0, verbose_name='Phone Number', blank=True, null=True)
+    State = models.CharField(default="", max_length=100, verbose_name='State', blank=True, null=True)
+    city = models.CharField(default="",max_length=100, verbose_name='City', blank=True)
     address = models.CharField(max_length=400, verbose_name='Address', blank=True)
-    National_Code = models.BigIntegerField(default=0, verbose_name='National Code')
-    Student_Number = models.BigIntegerField(default=0, verbose_name='Student Number')
-    Responsibility = models.CharField(max_length=100, verbose_name='City', blank=True)
-    Score = models.IntegerField(default=0, verbose_name='Score')
+    National_Code = models.BigIntegerField( default=0,verbose_name='National Code',blank=True, null=True)
+    Student_Number = models.BigIntegerField(default=0, verbose_name='Student Number',blank=True, null=True)
+    Responsibility = models.CharField(default="",max_length=100, verbose_name='City', blank=True)
+    Score = models.IntegerField(default=0, verbose_name='Score' )
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
