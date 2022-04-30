@@ -28,5 +28,5 @@ urlpatterns = [
     path('auth/', include('accounts.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    # path('api/', include('articles.urls', namespace='api')),
+    path('api/plan/', include('plan.urls',namespace='plan')),
 ]
