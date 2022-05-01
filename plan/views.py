@@ -18,10 +18,10 @@ from plan.serializers import (
 )
 from rest_framework import filters
 
-import threading
 
 
-class PostListAPIView(generics.ListAPIView):
+
+class PlanPostListAPIView(generics.ListAPIView):
     queryset = models.Plan.objects.all()
     serializer_class = PostListSerializer
     permission_classes = [IsAuthenticated]
@@ -32,28 +32,28 @@ class PostListAPIView(generics.ListAPIView):
     #     return Article.objects.all()
 
 
-class PostDetailAPIView(generics.RetrieveAPIView):
+class PlanPostDetailAPIView(generics.RetrieveAPIView):
     queryset = models.Plan.objects.all()
     serializer_class = PostDetailSerializer
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
 
-class PostUpdateAPIView(generics.UpdateAPIView):
+class PlanPostUpdateAPIView(generics.UpdateAPIView):
     queryset = models.Plan.objects.all()
     serializer_class = PostUpdateSerializer
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
 
-class PostCreateAPIView(generics.CreateAPIView):
+class PlanPostCreateAPIView(generics.CreateAPIView):
     queryset = models.Plan.objects.all()
     serializer_class = PostCreateSerializer
     permission_classes = [IsAuthenticated]
 
 
-class PostDeleteAPIView(generics.DestroyAPIView):
+class PlanPostDeleteAPIView(generics.DestroyAPIView):
     queryset = models.Plan.objects.all()
-    serializer_class = PostUpdateSerializer
+    serializer_class = PostDeleteSerializer
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
