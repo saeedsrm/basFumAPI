@@ -4,5 +4,5 @@ from accounts.models import Account
 
 
 @admin.register(Account)
-class Financial_reportingAdmin(admin.ModelAdmin):
+class AccountAdmin(admin.ModelAdmin):
     pass
