@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 
 
     'accounts',
-    'courses',
+    # 'courses',
     'plan',
 ]
 STATIC_ROOT=os.path.join(BASE_DIR,"static")

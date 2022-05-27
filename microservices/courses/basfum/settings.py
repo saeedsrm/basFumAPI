@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'courses',
-    'plan',
+    # 'plan',
 ]
 STATIC_ROOT=os.path.join(BASE_DIR,"static")
 MEDIA_URL = '/media/'
