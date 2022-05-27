@@ -1,6 +1,7 @@
 version: "3.9"
 
 services:
+############################ user service ##########################
   db-user-service:
     container_name: db-user-service
     image: postgres
@@ -13,11 +14,11 @@ services:
   user-service:
     container_name: user-service
     build: ./users/
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8001
     volumes:
       - ./users/:/code
     ports:
-      - "8000:8000"
+      - "8001:8001"
     environment:
       - POSTGRES_NAME=users
       - POSTGRES_USER=users
@@ -38,11 +39,11 @@ services:
   plan-service:
     container_name: plan-service
     build: ./plan/
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8002
     volumes:
       - ./plan/:/code
     ports:
-      - "8000:8000"
+      - "8002:8002"
     environment:
       - POSTGRES_NAME=plan
       - POSTGRES_USER=plan
@@ -50,7 +51,7 @@ services:
     depends_on:
       - db-plan-service
 
-########################################### course service #################################
+############################ course service ##########################
 
   db-course-service:
     container_name: db-course-service
@@ -65,11 +66,11 @@ services:
   course-service:
     container_name: course-service
     build: ./course/
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8003
     volumes:
       - ./course/:/code
     ports:
-      - "8000:8000"
+      - "8003:8003"
     environment:
       - POSTGRES_NAME=course
       - POSTGRES_USER=course
