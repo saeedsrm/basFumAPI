@@ -25,9 +25,19 @@ SECRET_KEY = 'django-insecure-b!!_4o3gkf)rx1+wc!46+!zwgw)h=pq66=e=tjid0e$_3f$^ee
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','127.0.0.1:8000','s-rahmani.ir','www.s-rahmani.ir']
+ALLOWED_HOSTS = ['s-rahmani.ir','www.s-rahmani.ir']
 
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+APPEND_SLASH=False
 # Application definition
 
 INSTALLED_APPS = [
@@ -35,7 +45,7 @@ INSTALLED_APPS = [
     'adminlte3',
     # Optional: Django admin theme (must be before django.contrib.admin)
     'adminlte3_theme',
-
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+
 
     'accounts',
     'courses',
@@ -64,6 +75,7 @@ REST_FRAMEWORK = {
 }
 AUTH_USER_MODEL = 'accounts.Account'
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
