@@ -2,6 +2,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.serializers import ModelSerializer
 from accounts.models import Account
 
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
@@ -12,7 +13,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         return token
 
+
 class PostCreateSerializer(ModelSerializer):
     class Meta:
-        model=Account
-        fields= ('email','password',)
+        model = Account
+        fields = ('email', 'password',)
+
+
+class ShowMyInformationsSerializer(ModelSerializer):
+    class Mera:
+        model = Account
+        fields = ('picrure', 'first_name', 'last_name', 'phone_number', 'State', 'city', 'address', 'National_Code',
+                  'Student_Number', 'email', 'Score')
