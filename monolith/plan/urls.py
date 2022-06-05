@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^create', views.PlanPostCreateAPIView.as_view(), name='create'),
     url(r'^(?P<id>\d+)/delete', views.PlanPostDeleteAPIView.as_view(), name='delete'),
     url(r'^register-in-plan', views.UserPlanCreateAPIView.as_view(), name='UserPlanCreateAPIView'),
+    url(r'^list-my-plan', views.ListMyPlanAPIView.as_view(), name='ListMyPlanAPIView'),
 
 ]

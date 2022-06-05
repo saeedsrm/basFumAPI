@@ -60,7 +60,7 @@ class UserCourseCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class UserCoursesListAPIView(generics.ListAPIView):
+class ListMyCoursesAPIView(generics.ListAPIView):
     serializer_class = UserCourseSerializer
     permission_classes = [IsAuthenticated]
 

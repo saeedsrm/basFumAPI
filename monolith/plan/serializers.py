@@ -35,7 +35,7 @@ class PlanDeleteSerializer(ModelSerializer):
 
 # end plan
 
-class User_PlanCreateSerializer(ModelSerializer):
+class User_PlanSerializer(ModelSerializer):
     class Meta:
         model = models.User_Plan
         fields = '__all__'

@@ -15,7 +15,7 @@ from plan.serializers import (
     PlanUpdateSerializer,
     PlanCreateSerializer,
     PlanDeleteSerializer,
-    User_PlanCreateSerializer
+    User_PlanSerializer
 )
 from rest_framework import filters
 
@@ -59,7 +59,15 @@ class PlanPostDeleteAPIView(generics.DestroyAPIView):
 
 class UserPlanCreateAPIView(generics.CreateAPIView):
     queryset = models.User_Plan.objects.all()
-    serializer_class = User_PlanCreateSerializer
+    serializer_class = User_PlanSerializer
     permission_classes = [IsAuthenticated]
+
+
+class ListMyPlanAPIView(generics.ListAPIView):
+    serializer_class = User_PlanSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self,*args,**kwargs):
+        return models.User_Plan.objects.filter(user=self.request.user)
 
 
