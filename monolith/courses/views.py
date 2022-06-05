@@ -11,7 +11,7 @@ from courses.serializers import (
     CourseUpdateSerializer,
     CourseCreateSerializer,
     CourseDeleteSerializer,
-    UserCourseCreateSerializer
+    UserCourseSerializer
 )
 from rest_framework import filters
 
@@ -56,5 +56,13 @@ class CoursesPostDeleteAPIView(generics.DestroyAPIView):
 
 class UserCourseCreateAPIView(generics.CreateAPIView):
     queryset = models.User_Course.objects.all()
-    serializer_class = UserCourseCreateSerializer
+    serializer_class = UserCourseSerializer
     permission_classes = [IsAuthenticated]
+
+
+class UserCoursesListAPIView(generics.ListAPIView):
+    serializer_class = UserCourseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self, *args, **kwargs):
+        return models.User_Course.objects.filter(user=self.request.user)

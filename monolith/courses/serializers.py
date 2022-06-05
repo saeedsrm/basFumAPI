@@ -35,7 +35,8 @@ class CourseDeleteSerializer(ModelSerializer):
 
 # end course
 
-class UserCourseCreateSerializer(ModelSerializer):
+class UserCourseSerializer(ModelSerializer):
     class Meta:
         model = models.User_Course
         fields = '__all__'
+

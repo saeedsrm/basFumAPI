@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^create', views.CoursesPostCreateAPIView.as_view(), name='create'),
     url(r'^(?P<id>\d+)/delete', views.CoursesPostDeleteAPIView.as_view(), name='delete'),
     url(r'^register-in-course', views.UserCourseCreateAPIView.as_view(), name='UserCourseCreateAPIView'),
+    url(r'^list-of-my-course', views.UserCoursesListAPIView.as_view(), name='UserCoursesListAPIView'),
 ]
