@@ -14,7 +14,8 @@ class Plan(models.Model):
     duration = models.DateTimeField(verbose_name='Duratios')
     # organizor=models.ForeignKey()
     createor = models.ForeignKey(Account, on_delete=models.CASCADE)
-    is_finish=models.BooleanField(default=False)
+    is_finish = models.BooleanField(default=False)
+
 
 class Plan_Category(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
