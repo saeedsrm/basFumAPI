@@ -58,7 +58,7 @@ class PlanPostDeleteAPIView(generics.DestroyAPIView):
 
 
 class UserPlanCreateAPIView(generics.CreateAPIView):
-    queryset = models.Plan.objects.all()
+    queryset = models.User_Plan.objects.all()
     serializer_class = User_PlanCreateSerializer
     permission_classes = [IsAuthenticated]
 

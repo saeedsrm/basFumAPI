@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit', views.CoursesPostUpdateAPIView.as_view(), name='update'),
     url(r'^create', views.CoursesPostCreateAPIView.as_view(), name='create'),
     url(r'^(?P<id>\d+)/delete', views.CoursesPostDeleteAPIView.as_view(), name='delete'),
-
+    url(r'^register-in-course', views.UserCourseCreateAPIView.as_view(), name='UserCourseCreateAPIView'),
 ]

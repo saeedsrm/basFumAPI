@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import Account
 
 
 class Courses(models.Model):
@@ -28,3 +29,8 @@ class Question(models.Model):
     answer = models.CharField(verbose_name='answer', max_length=100)
     wrong_answer = models.CharField(verbose_name='wrong', max_length=100)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+
+
+class User_Course(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name="کاربر")
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, verbose_name="دوره")

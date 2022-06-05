@@ -3,33 +3,39 @@ from courses import models
 
 
 # course
-class PostListSerializer(ModelSerializer):
+class CourseListSerializer(ModelSerializer):
     class Meta:
         model = models.Courses
         fields = '__all__'
 
 
-class PostDetailSerializer(ModelSerializer):
+class CourseDetailSerializer(ModelSerializer):
     class Meta:
         model = models.Courses
         fields = '__all__'
 
 
-class PostUpdateSerializer(ModelSerializer):
+class CourseUpdateSerializer(ModelSerializer):
     class Meta:
         model = models.Courses
         fields = '__all__'
 
 
-class PostCreateSerializer(ModelSerializer):
+class CourseCreateSerializer(ModelSerializer):
     class Meta:
         model = models.Courses
         fields = '__all__'
 
 
-class PostDeleteSerializer(ModelSerializer):
+class CourseDeleteSerializer(ModelSerializer):
     class Meta:
-        model= models.Courses
-        fields='__all__'
+        model = models.Courses
+        fields = '__all__'
+
 
 # end course
+
+class UserCourseCreateSerializer(ModelSerializer):
+    class Meta:
+        model = models.User_Course
+        fields = '__all__'
