@@ -16,14 +16,14 @@ from rest_framework import filters
 
 
 class CoursesPostListAPIView(generics.ListAPIView):
-    queryset = models.Courses.objects.all()
+    queryset = models.Courses.objects.filter(isfinish=False)
     serializer_class = PostListSerializer
-    permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['name', 'cost', 'date']
     search_fields = ['name', 'date']
     # def get_queryset(self,*args,**kwargs):
     #     return Article.objects.all()
+    # permission_classes = [IsAuthenticated]
 
 
 class CoursesPostDetailAPIView(generics.RetrieveAPIView):
