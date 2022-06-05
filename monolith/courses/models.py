@@ -4,13 +4,13 @@ from django.db import models
 class Courses(models.Model):
     name = models.CharField(max_length=60, verbose_name='نام دوره')
     description = models.TextField(verbose_name='توضیحات')
-    cost=models.IntegerField(verbose_name="قیمت", default=0)
-    isfinish=models.BooleanField(default=False, verbose_name="آیا دوره تمام شده است؟")
-    language=models.CharField(max_length=100,verbose_name="زبان")
-    duration=models.IntegerField(verbose_name="مدت زمان دوره")
-    level=models.CharField(max_length=100,verbose_name="سطح")
-    number_of_seasons=models.IntegerField(verbose_name="تعداد فصل ها")
-    teacher=models.CharField(max_length=60, verbose_name='مدرس')
+    cost = models.IntegerField(verbose_name="قیمت", default=0)
+    isfinish = models.BooleanField(default=False, verbose_name="آیا دوره تمام شده است؟")
+    language = models.CharField(default="فارسی", max_length=100, verbose_name="زبان")
+    duration = models.IntegerField(null=True, verbose_name="مدت زمان دوره")
+    level = models.CharField(null=True, max_length=100, verbose_name="سطح")
+    number_of_seasons = models.IntegerField(default=1, verbose_name="تعداد فصل ها")
+    teacher = models.CharField(null=True, max_length=60, verbose_name='مدرس')
 
 
 class Movie(models.Model):
