@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from courses import models
 
+
 # course
 class PostListSerializer(ModelSerializer):
     class Meta:
@@ -28,7 +29,7 @@ class PostCreateSerializer(ModelSerializer):
 
 class PostDeleteSerializer(ModelSerializer):
     class Meta:
-        model=models.Courses
+        model= models.Courses
         fields='__all__'
 
 # end course

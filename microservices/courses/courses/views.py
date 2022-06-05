@@ -2,14 +2,12 @@
 
 from rest_framework import generics
 
-from courses import models
+from monolith.courses import models
 from rest_framework.permissions import (
-    AllowAny,
     IsAuthenticated,
-    IsAdminUser,
 )
 
-from courses.serializers import (
+from monolith.courses.serializers import (
     PostListSerializer,
     PostDetailSerializer,
     PostUpdateSerializer,

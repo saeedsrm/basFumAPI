@@ -4,9 +4,7 @@ from rest_framework import generics
 
 from courses import models
 from rest_framework.permissions import (
-    AllowAny,
     IsAuthenticated,
-    IsAdminUser,
 )
 
 from courses.serializers import (

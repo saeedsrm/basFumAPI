@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.serializers import ModelSerializer
-from accounts.models import Account
+from monolith.accounts.models import Account
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 

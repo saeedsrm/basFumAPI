@@ -1,5 +1,5 @@
 from django.urls import path
-from accounts.views import MyObtainTokenPairView, PostCreateAPIView
+from monolith.accounts import MyObtainTokenPairView, PostCreateAPIView
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.conf.urls import url
 

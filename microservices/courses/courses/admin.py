@@ -1,5 +1,5 @@
 from django.contrib import admin
-from courses import models
+from monolith.courses import models
 
 
 @admin.register(models.Courses)

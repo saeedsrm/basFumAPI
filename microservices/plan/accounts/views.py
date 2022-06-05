@@ -1,6 +1,6 @@
 from rest_framework import generics
 
-from accounts.models import Account
+from monolith.accounts.models import Account
 from .serializers import MyTokenObtainPairSerializer, PostCreateSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
