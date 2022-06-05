@@ -19,12 +19,9 @@ from plan.serializers import (
 from rest_framework import filters
 
 
-
-
 class PlanPostListAPIView(generics.ListAPIView):
-    queryset = models.Plan.objects.all()
+    queryset = models.Plan.objects.filter(is_finish=False)
     serializer_class = PostListSerializer
-    permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['name', 'cost', 'date']
     search_fields = ['name', 'date']
