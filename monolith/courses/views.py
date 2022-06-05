@@ -1,5 +1,3 @@
-
-
 from rest_framework import generics
 
 from courses import models
@@ -15,8 +13,6 @@ from courses.serializers import (
     PostDeleteSerializer
 )
 from rest_framework import filters
-
-
 
 
 class CoursesPostListAPIView(generics.ListAPIView):
