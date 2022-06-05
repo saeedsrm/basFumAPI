@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from comment import models
-from comment.serializers import CommentSerializer, CommentListSerializer
+from comment.serializers import CommentSerializer, CommentListSerializer, NotificationsSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -23,4 +23,10 @@ class CommentListAPIView(APIView):
 class CommentCreateAPIView(generics.CreateAPIView):
     queryset = models.Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class NotificationsListAPIView(generics.ListAPIView):
+    queryset = models.Notifications.objects.all()
+    serializer_class = NotificationsSerializer
     permission_classes = [IsAuthenticated]
