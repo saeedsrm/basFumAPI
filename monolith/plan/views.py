@@ -37,26 +37,6 @@ class PlanPostDetailAPIView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class PlanPostUpdateAPIView(generics.UpdateAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PlanUpdateSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
-
-
-class PlanPostCreateAPIView(generics.CreateAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PlanCreateSerializer
-    permission_classes = [IsAuthenticated]
-
-
-class PlanPostDeleteAPIView(generics.DestroyAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PlanDeleteSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
-
-
 class UserPlanCreateAPIView(generics.CreateAPIView):
     queryset = models.User_Plan.objects.all()
     serializer_class = User_PlanSerializer
@@ -67,7 +47,5 @@ class ListMyPlanAPIView(generics.ListAPIView):
     serializer_class = User_PlanSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, *args, **kwargs):
         return models.User_Plan.objects.filter(user=self.request.user)
-
-

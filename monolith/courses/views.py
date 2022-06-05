@@ -8,9 +8,6 @@ from rest_framework.permissions import (
 from courses.serializers import (
     CourseListSerializer,
     CourseDetailSerializer,
-    CourseUpdateSerializer,
-    CourseCreateSerializer,
-    CourseDeleteSerializer,
     UserCourseSerializer
 )
 from rest_framework import filters
@@ -22,9 +19,6 @@ class CoursesPostListAPIView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['name', 'cost', 'date']
     search_fields = ['name', 'date']
-    # def get_queryset(self,*args,**kwargs):
-    #     return Article.objects.all()
-    # permission_classes = [IsAuthenticated]
 
 
 class CoursesPostDetailAPIView(generics.RetrieveAPIView):
@@ -34,24 +28,24 @@ class CoursesPostDetailAPIView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class CoursesPostUpdateAPIView(generics.UpdateAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = CourseUpdateSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
-
-
-class CoursesPostCreateAPIView(generics.CreateAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = CourseCreateSerializer
-    permission_classes = [IsAuthenticated]
-
-
-class CoursesPostDeleteAPIView(generics.DestroyAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = CourseDeleteSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
+# class CoursesPostUpdateAPIView(generics.UpdateAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseUpdateSerializer
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
+#
+#
+# class CoursesPostCreateAPIView(generics.CreateAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseCreateSerializer
+#     permission_classes = [IsAuthenticated]
+#
+#
+# class CoursesPostDeleteAPIView(generics.DestroyAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseDeleteSerializer
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
 
 
 class UserCourseCreateAPIView(generics.CreateAPIView):

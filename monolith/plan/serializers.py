@@ -15,24 +15,6 @@ class PlanDetailSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class PlanUpdateSerializer(ModelSerializer):
-    class Meta:
-        model = models.Plan
-        fields = '__all__'
-
-
-class PlanCreateSerializer(ModelSerializer):
-    class Meta:
-        model = models.Plan
-        fields = '__all__'
-
-
-class PlanDeleteSerializer(ModelSerializer):
-    class Meta:
-        model = models.Plan
-        fields = '__all__'
-
-
 # end plan
 
 class User_PlanSerializer(ModelSerializer):
