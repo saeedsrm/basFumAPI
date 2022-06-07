@@ -14,10 +14,16 @@ class Courses(models.Model):
     teacher = models.CharField(null=True, max_length=60, verbose_name='مدرس')
 
 
+class Chapter(models.Model):
+    name = models.CharField(max_length=60, verbose_name='نام فصل')
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, verbose_name="درس")
+    description = models.TextField(verbose_name='توضیحات')
+
+
 class Movie(models.Model):
     movie = models.FileField(verbose_name='movie', upload_to='course_movie/')
     note = models.TextField(verbose_name='توضیحات')
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE, verbose_name="درس")
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, verbose_name="فصل")
 
 
 class Exam(models.Model):

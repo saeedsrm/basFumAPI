@@ -8,7 +8,8 @@ from rest_framework.permissions import (
 from courses.serializers import (
     CourseListSerializer,
     CourseDetailSerializer,
-    UserCourseSerializer
+    UserCourseSerializer,
+    ChapterSerializer
 )
 from rest_framework import filters
 
@@ -28,6 +29,27 @@ class CoursesPostDetailAPIView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
+# class ListChapterOfCourseAPIView(generics.ListAPIView):
+#     serializer_class = ChapterSerializer
+#     permission_classes = [IsAuthenticated]
+#
+#     def get_queryset(self, *args, **kwargs):
+#         return models.Chapter.objects.filter(user=self.request.user)
+
+
+class UserCourseCreateAPIView(generics.CreateAPIView):
+    queryset = models.User_Course.objects.all()
+    serializer_class = UserCourseSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class ListMyCoursesAPIView(generics.ListAPIView):
+    serializer_class = UserCourseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self, *args, **kwargs):
+        return models.User_Course.objects.filter(user=self.request.user)
+
 # class CoursesPostUpdateAPIView(generics.UpdateAPIView):
 #     queryset = models.Courses.objects.all()
 #     serializer_class = CourseUpdateSerializer
@@ -46,17 +68,3 @@ class CoursesPostDetailAPIView(generics.RetrieveAPIView):
 #     serializer_class = CourseDeleteSerializer
 #     lookup_field = 'id'
 #     permission_classes = [IsAuthenticated]
-
-
-class UserCourseCreateAPIView(generics.CreateAPIView):
-    queryset = models.User_Course.objects.all()
-    serializer_class = UserCourseSerializer
-    permission_classes = [IsAuthenticated]
-
-
-class ListMyCoursesAPIView(generics.ListAPIView):
-    serializer_class = UserCourseSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self, *args, **kwargs):
-        return models.User_Course.objects.filter(user=self.request.user)
