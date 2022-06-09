@@ -45,8 +45,14 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class Account(AbstractBaseUser):
-    picrure = models.FileField(verbose_name='picture', upload_to='user picture/', default='user picture/prof.png', blank=True)
+    class Meta:
+        verbose_name = "کاربران "
+        verbose_name_plural = "کاربران"
+
+    picrure = models.FileField(verbose_name='picture', upload_to='user picture/', default='user picture/prof.png',
+                               blank=True)
     first_name = models.CharField(max_length=60, verbose_name='First name', blank=True)
     last_name = models.CharField(max_length=60, verbose_name='Last name', blank=True)
     # email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -54,25 +60,25 @@ class Account(AbstractBaseUser):
     # username=None
     phone_number = models.BigIntegerField(default=0, verbose_name='Phone Number', blank=True, null=True)
     State = models.CharField(default="", max_length=100, verbose_name='State', blank=True, null=True)
-    city = models.CharField(default="",max_length=100, verbose_name='City', blank=True)
+    city = models.CharField(default="", max_length=100, verbose_name='City', blank=True)
     address = models.CharField(max_length=400, verbose_name='Address', blank=True)
-    National_Code = models.BigIntegerField( default=0,verbose_name='National Code',blank=True, null=True)
-    Student_Number = models.BigIntegerField(default=0, verbose_name='Student Number',blank=True, null=True)
-    Responsibility = models.CharField(default="",max_length=100, verbose_name='Responsibility', blank=True)
-    Score = models.IntegerField(default=0, verbose_name='Score' )
+    National_Code = models.BigIntegerField(default=0, verbose_name='National Code', blank=True, null=True)
+    Student_Number = models.BigIntegerField(default=0, verbose_name='Student Number', blank=True, null=True)
+    Responsibility = models.CharField(default="", max_length=100, verbose_name='Responsibility', blank=True)
+    Score = models.IntegerField(default=0, verbose_name='Score')
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
     is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    staff = models.BooleanField(default=False)  # a admin user; non super-user
+    admin = models.BooleanField(default=False)  # a superuser
 
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [] # Email & Password are required by default.
+    REQUIRED_FIELDS = []  # Email & Password are required by default.
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -106,5 +112,3 @@ class Account(AbstractBaseUser):
         return self.admin
 
     objects = UserManager()
-
-
