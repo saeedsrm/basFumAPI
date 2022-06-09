@@ -21,11 +21,12 @@ from rest_framework.authtoken.views import obtain_auth_token
 router = routers.DefaultRouter()
 
 urlpatterns = [
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('auth/', include('accounts.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/plan/', include('plan.urls', namespace='plan')),
+    path('api/comment/', include('comment.urls', namespace='comment')),
     path('api/courses/', include('courses.urls', namespace='courses')),
 ]
