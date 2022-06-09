@@ -58,7 +58,7 @@ class Account(AbstractBaseUser):
     address = models.CharField(max_length=400, verbose_name='Address', blank=True)
     National_Code = models.BigIntegerField( default=0,verbose_name='National Code',blank=True, null=True)
     Student_Number = models.BigIntegerField(default=0, verbose_name='Student Number',blank=True, null=True)
-    Responsibility = models.CharField(default="",max_length=100, verbose_name='City', blank=True)
+    Responsibility = models.CharField(default="",max_length=100, verbose_name='Responsibility', blank=True)
     Score = models.IntegerField(default=0, verbose_name='Score' )
     email = models.EmailField(
         verbose_name='email address',

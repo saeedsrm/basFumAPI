@@ -21,7 +21,7 @@ class PostCreateSerializer(ModelSerializer):
 
 
 class ShowMyInformationsSerializer(ModelSerializer):
-    class Mera:
+    class Meta:
         model = Account
         fields = ('picrure', 'first_name', 'last_name', 'phone_number', 'State', 'city', 'address', 'National_Code',
                   'Student_Number', 'email', 'Score')

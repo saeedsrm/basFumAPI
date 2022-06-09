@@ -4,6 +4,7 @@ from .serializers import MyTokenObtainPairSerializer, PostCreateSerializer, Show
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -16,9 +17,10 @@ class PostCreateAPIView(generics.CreateAPIView):
     serializer_class = PostCreateSerializer
 
 
-class GetMyInformation(generics.ListAPIView):
+class GetMyInformation(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = ShowMyInformationsSerializer
 
-    def get_queryset(self, *args, **kwargs):
-        return Account.objects.filter(id=self.request.user)
+    def post(self, *args, **kwargs):
+        data=Account.objects.get(email=self.request.user.email)
+        ser_data=ShowMyInformationsSerializer(data)
+        return Response(ser_data.data)
