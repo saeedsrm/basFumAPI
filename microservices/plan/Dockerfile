@@ -3,6 +3,6 @@ FROM python:3
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 WORKDIR /code
-COPY ../../monolith/requirement.txt /code/
-RUN pip install -r requirements.txt
+COPY ./requirement.txt /code/
+RUN pip install -r requirement.txt
 COPY . /code/
