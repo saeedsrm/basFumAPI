@@ -77,3 +77,33 @@ services:
       - POSTGRES_PASSWORD=course
     depends_on:
       - db-course-service
+
+
+############################ notifications service ##########################
+
+  db-notifications-service:
+    container_name: db-notifications-service
+    image: postgres
+    volumes:
+      - ./data/db-notifications-service:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=notifications
+      - POSTGRES_USER=notifications
+      - POSTGRES_PASSWORD=notifications
+
+  notifications-service:
+    container_name: notifications-service
+    build: ./notifications/
+    command: python manage.py runserver 0.0.0.0:8003
+    volumes:
+      - ./notifications/:/code
+    ports:
+      - "8003:8003"
+    environment:
+      - POSTGRES_NAME=notifications
+      - POSTGRES_USER=notifications
+      - POSTGRES_PASSWORD=notifications
+    depends_on:
+      - db-notifications-service
+      
+      
