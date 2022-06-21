@@ -23,6 +23,7 @@ services:
       - POSTGRES_NAME=users
       - POSTGRES_USER=users
       - POSTGRES_PASSWORD=users
+      - POSTGRES_HOST=db-user-service
     depends_on:
       - db-user-service
 
@@ -48,6 +49,7 @@ services:
       - POSTGRES_NAME=plan
       - POSTGRES_USER=plan
       - POSTGRES_PASSWORD=plan
+      - POSTGRES_HOST=db-plan-service
     depends_on:
       - db-plan-service
 
@@ -75,6 +77,7 @@ services:
       - POSTGRES_NAME=course
       - POSTGRES_USER=course
       - POSTGRES_PASSWORD=course
+      - POSTGRES_HOST=db-course-service
     depends_on:
       - db-course-service
 
@@ -103,6 +106,7 @@ services:
       - POSTGRES_NAME=notifications
       - POSTGRES_USER=notifications
       - POSTGRES_PASSWORD=notifications
+      - POSTGRES_HOST=db-notifications-service
     depends_on:
       - db-notifications-service
       
