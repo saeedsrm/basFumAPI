@@ -1,57 +1,76 @@
-
-
 from rest_framework import generics
 
-from monolith.courses import models
+from courses import models
 from rest_framework.permissions import (
     IsAuthenticated,
 )
 
-from monolith.courses.serializers import (
-    PostListSerializer,
-    PostDetailSerializer,
-    PostUpdateSerializer,
-    PostCreateSerializer,
-    PostDeleteSerializer
+from courses.serializers import (
+    CourseListSerializer,
+    CourseDetailSerializer,
+    UserCourseSerializer,
+    ChapterSerializer
 )
 from rest_framework import filters
-
-
-
+from django.shortcuts import redirect
+from django.contrib.auth import logout
 
 class CoursesPostListAPIView(generics.ListAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = PostListSerializer
-    permission_classes = [IsAuthenticated]
+    queryset = models.Courses.objects.filter(isfinish=False)
+    serializer_class = CourseListSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['name', 'cost', 'date']
     search_fields = ['name', 'date']
-    # def get_queryset(self,*args,**kwargs):
-    #     return Article.objects.all()
 
 
 class CoursesPostDetailAPIView(generics.RetrieveAPIView):
     queryset = models.Courses.objects.all()
-    serializer_class = PostDetailSerializer
+    serializer_class = CourseDetailSerializer
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
 
-class CoursesPostUpdateAPIView(generics.UpdateAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = PostUpdateSerializer
-    lookup_field = 'id'
+# class ListChapterOfCourseAPIView(generics.ListAPIView):
+#     serializer_class = ChapterSerializer
+#     permission_classes = [IsAuthenticated]
+#
+#     def get_queryset(self, *args, **kwargs):
+#         return models.Chapter.objects.filter(user=self.request.user)
+
+
+class UserCourseCreateAPIView(generics.CreateAPIView):
+    queryset = models.User_Course.objects.all()
+    serializer_class = UserCourseSerializer
     permission_classes = [IsAuthenticated]
 
 
-class CoursesPostCreateAPIView(generics.CreateAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = PostCreateSerializer
+class ListMyCoursesAPIView(generics.ListAPIView):
+    serializer_class = UserCourseSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self, *args, **kwargs):
+        return models.User_Course.objects.filter(user=self.request.user)
 
-class CoursesPostDeleteAPIView(generics.DestroyAPIView):
-    queryset = models.Courses.objects.all()
-    serializer_class = PostDeleteSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
+# class CoursesPostUpdateAPIView(generics.UpdateAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseUpdateSerializer
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
+#
+#
+# class CoursesPostCreateAPIView(generics.CreateAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseCreateSerializer
+#     permission_classes = [IsAuthenticated]
+#
+#
+# class CoursesPostDeleteAPIView(generics.DestroyAPIView):
+#     queryset = models.Courses.objects.all()
+#     serializer_class = CourseDeleteSerializer
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
