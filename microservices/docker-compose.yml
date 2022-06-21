@@ -65,10 +65,10 @@ services:
 
   course-service:
     container_name: course-service
-    build: ./course/
+    build: ./courses/
     command: python manage.py runserver 0.0.0.0:8003
     volumes:
-      - ./course/:/code
+      - ./courses/:/code
     ports:
       - "8003:8003"
     environment:
@@ -94,11 +94,11 @@ services:
   notifications-service:
     container_name: notifications-service
     build: ./notifications/
-    command: python manage.py runserver 0.0.0.0:8003
+    command: python manage.py runserver 0.0.0.0:8004
     volumes:
       - ./notifications/:/code
     ports:
-      - "8003:8003"
+      - "8004:8004"
     environment:
       - POSTGRES_NAME=notifications
       - POSTGRES_USER=notifications
