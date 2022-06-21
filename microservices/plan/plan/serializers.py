@@ -1,34 +1,23 @@
 from rest_framework.serializers import ModelSerializer
 from plan import models
 
+
 # plan
-class PostListSerializer(ModelSerializer):
+class PlanListSerializer(ModelSerializer):
     class Meta:
         model = models.Plan
         fields = '__all__'
 
 
-class PostDetailSerializer(ModelSerializer):
+class PlanDetailSerializer(ModelSerializer):
     class Meta:
         model = models.Plan
         fields = '__all__'
 
-
-class PostUpdateSerializer(ModelSerializer):
-    class Meta:
-        model = models.Plan
-        fields = '__all__'
-
-
-class PostCreateSerializer(ModelSerializer):
-    class Meta:
-        model = models.Plan
-        fields = '__all__'
-
-
-class PostDeleteSerializer(ModelSerializer):
-    class Meta:
-        model=models.Plan
-        fields='__all__'
 
 # end plan
+
+class User_PlanSerializer(ModelSerializer):
+    class Meta:
+        model = models.User_Plan
+        fields = '__all__'

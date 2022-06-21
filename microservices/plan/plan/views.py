@@ -10,21 +10,18 @@ from rest_framework.permissions import (
 )
 from rest_framework.response import Response
 from plan.serializers import (
-    PostListSerializer,
-    PostDetailSerializer,
-    PostUpdateSerializer,
-    PostCreateSerializer,
-    PostDeleteSerializer
+    PlanListSerializer,
+    PlanDetailSerializer,
+    User_PlanSerializer
 )
 from rest_framework import filters
-
-
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 
 class PlanPostListAPIView(generics.ListAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PostListSerializer
-    permission_classes = [IsAuthenticated]
+    queryset = models.Plan.objects.filter(is_finish=False)
+    serializer_class = PlanListSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['name', 'cost', 'date']
     search_fields = ['name', 'date']
@@ -34,26 +31,25 @@ class PlanPostListAPIView(generics.ListAPIView):
 
 class PlanPostDetailAPIView(generics.RetrieveAPIView):
     queryset = models.Plan.objects.all()
-    serializer_class = PostDetailSerializer
+    serializer_class = PlanDetailSerializer
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
 
-class PlanPostUpdateAPIView(generics.UpdateAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PostUpdateSerializer
-    lookup_field = 'id'
+class UserPlanCreateAPIView(generics.CreateAPIView):
+    queryset = models.User_Plan.objects.all()
+    serializer_class = User_PlanSerializer
     permission_classes = [IsAuthenticated]
 
 
-class PlanPostCreateAPIView(generics.CreateAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PostCreateSerializer
+class ListMyPlanAPIView(generics.ListAPIView):
+    serializer_class = User_PlanSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self, *args, **kwargs):
+        return models.User_Plan.objects.filter(user=self.request.user)
 
-class PlanPostDeleteAPIView(generics.DestroyAPIView):
-    queryset = models.Plan.objects.all()
-    serializer_class = PostDeleteSerializer
-    lookup_field = 'id'
-    permission_classes = [IsAuthenticated]
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
