@@ -47,7 +47,7 @@ class ListMyPlanAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self, *args, **kwargs):
-        return models.User_Plan.objects.filter(user=self.request.user)
+        return models.User_Plan.objects.filter(user=self.request.user.id)
 
 
 def logout_view(request):
