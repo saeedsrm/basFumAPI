@@ -19,6 +19,7 @@ services:
   user-service:
     container_name: user-service
     build: ./users/
+    cpus: 0.1
     deploy:
       restart_policy:
         condition: on-failure
@@ -27,7 +28,10 @@ services:
         window: 120s
       resources:
         limits:
-          cpus: '0.01'
+          cpus: '0.1'
+          memory: 50M
+        reservations:
+          cpus: '0.1'
           memory: 50M
     command: python manage.py runserver 0.0.0.0:8001
     volumes:
