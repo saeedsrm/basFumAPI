@@ -19,11 +19,27 @@ services:
   user-service:
     container_name: user-service
     build: ./users/
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 50M
     command: python manage.py runserver 0.0.0.0:8001
     volumes:
       - ./users/:/code
     ports:
       - "8001:8001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     environment:
       - POSTGRES_NAME=users
       - POSTGRES_USER=users
