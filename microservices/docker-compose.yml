@@ -1,10 +1,15 @@
 version: "3.9"
 
 services:
-############################ user service ##########################
+  ############################ user service ##########################
   db-user-service:
     container_name: db-user-service
     image: postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
     volumes:
       - ./data/db-user-service:/var/lib/postgresql/data
     environment:
@@ -27,7 +32,7 @@ services:
     depends_on:
       - db-user-service
 
-############################ plan service ##########################
+  ############################ plan service ##########################
   db-plan-service:
     container_name: db-plan-service
     image: postgres
@@ -53,7 +58,7 @@ services:
     depends_on:
       - db-plan-service
 
-############################ course service ##########################
+  ############################ course service ##########################
 
   db-course-service:
     container_name: db-course-service
@@ -82,7 +87,7 @@ services:
       - db-course-service
 
 
-############################ notifications service ##########################
+  ############################ notifications service ##########################
 
   db-notifications-service:
     container_name: db-notifications-service
