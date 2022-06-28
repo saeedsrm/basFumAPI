@@ -5,6 +5,9 @@ services:
   db-user-service:
     container_name: db-user-service
     image: postgres
+    deploy:
+      restart_policy:
+        condition: always
     volumes:
       - ./data/db-user-service:/var/lib/postgresql/data
     environment:
@@ -47,6 +50,9 @@ services:
   db-plan-service:
     container_name: db-plan-service
     image: postgres
+    deploy:
+      restart_policy:
+        condition: always
     volumes:
       - ./data/db-plan-service:/var/lib/postgresql/data
     environment:
@@ -58,10 +64,7 @@ services:
     build: ./plan/
     deploy:
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+        condition: always
       resources:
         limits:
           cpus: '0.5'
@@ -93,6 +96,9 @@ services:
   db-course-service:
     container_name: db-course-service
     image: postgres
+    deploy:
+      restart_policy:
+        condition: always
     volumes:
       - ./data/db-course-service:/var/lib/postgresql/data
     environment:
@@ -105,10 +111,7 @@ services:
     build: ./courses/
     deploy:
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+        condition: always
       resources:
         limits:
           cpus: '0.5'
@@ -141,6 +144,9 @@ services:
   db-notifications-service:
     container_name: db-notifications-service
     image: postgres
+    deploy:
+      restart_policy:
+        condition: always
     volumes:
       - ./data/db-notifications-service:/var/lib/postgresql/data
     environment:
@@ -153,10 +159,7 @@ services:
     build: ./notifications/
     deploy:
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+        condition: always
       resources:
         limits:
           cpus: '0.5'
